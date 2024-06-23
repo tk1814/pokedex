@@ -1,0 +1,9 @@
+import gql from 'graphql-tag';
+
+export const GET_POKEMON_TYPES = gql`
+  query getPokemonTypes {
+    types: pokemon_v2_type {
+      name
+    }
+  }
+`;

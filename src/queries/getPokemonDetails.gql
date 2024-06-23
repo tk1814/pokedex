@@ -1,0 +1,34 @@
+import { gql } from 'graphql-tag';
+
+export const GET_POKEMON_DETAILS = gql`
+  query getPokemonDetails($id: Int!) {
+    pokemon: pokemon_v2_pokemon_by_pk(id: $id) {
+      id
+      name
+      height
+      weight
+      sprites: pokemon_v2_pokemonsprites {
+        avatar: sprites
+      }
+      stats: pokemon_v2_pokemonstats {
+        base_stat
+        stat: pokemon_v2_stat {
+          id
+          name
+        }
+      }
+      types: pokemon_v2_pokemontypes {
+        type: pokemon_v2_type {
+          id
+          name
+        }
+      }
+      abilities: pokemon_v2_pokemonabilities {
+        ability: pokemon_v2_ability {
+          id
+          name
+        }
+      }
+    }
+  }
+`;

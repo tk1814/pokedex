@@ -1,0 +1,45 @@
+import gql from 'graphql-tag';
+
+export const GET_FAVOURITE_POKEMONS = gql`
+  query getFavouritePokemons(
+    $limit: Int!
+    $offset: Int!
+    $name: String
+    $ids: [Int!]
+  ) {
+    pokemons: pokemon_v2_pokemon(
+      where: {
+        _and: [
+          { id: { _in: $ids } }
+          { name: { _ilike: $name } }
+        ]
+      }
+      limit: $limit
+      offset: $offset
+    ) {
+      id
+      name
+      types: pokemon_v2_pokemontypes {
+        type: pokemon_v2_type {
+          id
+          name
+        }
+      }
+      sprites: pokemon_v2_pokemonsprites {
+        avatar: sprites
+      }
+    }
+    pokemonCount: pokemon_v2_pokemon_aggregate(
+      where: {
+        _and: [
+          { id: { _in: $ids } }
+          { name: { _ilike: $name } }
+        ]
+      }
+    ) {
+      aggregate {
+        count
+      }
+    }
+  }
+`;
