@@ -7,11 +7,11 @@
   align-items: center;
   justify-content: space-between;
   display: flex;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease; // smooth transition on hover
   border-radius: 15px;
-  font-family: 'Arial', sans-serif;
 }
 
+// create overlay effect to cover the whole pokemon card (darken the background)
 .pokemon-card::before {
   content: '';
   position: absolute;
@@ -26,10 +26,11 @@
 .card-content {
   border-radius: 0px;
   background: linear-gradient(180deg, #f2f2f2, #c0c0c0);
-  opacity: 0.92;
+  opacity: 0.92; // content to not fully cover the background
   height: 100%;
 }
 
+// remove any styling
 .fav-icon {
   scale: 1.2;
   background: none !important;
@@ -40,23 +41,25 @@
 .pokemon-id {
   color: #424040;
   position: absolute;
-  top: 0px;
-  left: 3px;
+  top: 0px; // place it on the top of the card
+  left: 3px; // place it on the left of the card
   font-weight: bold;
   border-bottom-left-radius: 8px;
-  z-index: 1;
+  z-index: 1; // place it in front of the other elements
 }
 
 .pokemon-name {
-  white-space: normal !important;
+  white-space: normal !important; // allow name to wrap if exceeds width
   color: rgb(22, 22, 26);
   font-weight: bold;
 }
 
+// change cursor to pointer on hover to see details
 .details {
   cursor: pointer;
 }
 
+// center the avatar
 .pokemon-avatar {
   display: block;
   margin-left: auto;
@@ -75,6 +78,7 @@
   background-color: #47768b;
 }
 
+// center align items horizontally and vertically
 .v-row {
   align-items: center;
   justify-content: center;
@@ -82,4 +86,9 @@
 
 .v-chip {
   margin: 4px 4px;
+}
+
+.v-pagination {
+  margin-top: 20px;
+  margin-bottom: 40px;
 }

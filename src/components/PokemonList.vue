@@ -5,7 +5,7 @@
       <v-col cols="12" md="6" class="search">
         <v-text-field
           v-model="searchQuery"
-          label="Search Pokemon"
+          label="Search Pokémon by Name"
           outlined
           @input="handleSearch"
         ></v-text-field>
@@ -108,6 +108,7 @@
       <!-- Pagination -->
       <v-pagination
         class="pagination"
+        rounded="circle"
         v-model="currentPage"
         :length="Math.ceil(totalPokemons / itemsPerPage)"
         :total-visible="3"
@@ -315,7 +316,7 @@ function goToPokemonDetails(pokemon) {
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.05); // zoom in on card on hover
 }
 
 .id {
@@ -332,10 +333,5 @@ function goToPokemonDetails(pokemon) {
 
 .chip {
   font-size: 13px !important;
-}
-
-.v-pagination {
-  margin-top: 20px;
-  margin-bottom: 40px;
 }
 </style>

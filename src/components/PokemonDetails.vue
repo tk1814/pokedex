@@ -211,7 +211,7 @@ function isFavourite(pokemonId) {
 
 .card {
   height: 100%;
-  overflow-y: auto;
+  overflow-y: auto; // vertical scrolling if content exceeds height
 }
 
 .id {

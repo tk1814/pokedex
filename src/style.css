@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
@@ -11,6 +11,10 @@
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(0deg, rgba(235, 67, 67, 0.973), #f1c840);
   background-repeat: no-repeat;
+}
+
+body {
+  background: linear-gradient(0deg, rgba(235, 67, 67, 0.973), #f1c840);
 }
 
 #app {
