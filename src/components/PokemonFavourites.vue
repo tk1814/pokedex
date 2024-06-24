@@ -96,9 +96,9 @@
       ></v-pagination>
     </div>
 
-    <!-- No pokemon found -->
+    <!-- No favourite pokemon found -->
     <div v-else>
-      <p>No Pokémon found.</p>
+      <p>No favourite Pokémon found.</p>
     </div>
   </v-container>
 </template>
