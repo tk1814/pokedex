@@ -32,8 +32,14 @@
       </v-row>
     </div>
 
+    <!-- Loader -->
     <div v-if="loading"><Loader /></div>
-    <div v-else>
+
+    <!-- Error message -->
+    <div v-else-if="error">Something went wrong: {{ error.message }}</div>
+
+    <!-- Pokemon list -->
+    <div v-else-if="pokemons.length > 0">
       <v-row>
         <v-col v-for="pokemon in pokemons" :key="pokemon.id" cols="auto">
           <!-- Pokemon card -->
@@ -107,6 +113,11 @@
         @input="onPageChange"
       ></v-pagination>
     </div>
+
+    <!-- No pokemon found -->
+    <div v-else>
+      <p>No Pokemon found.</p>
+    </div>
   </v-container>
 </template>
 
@@ -114,8 +125,8 @@
 import { useQuery, useLazyQuery } from '@vue/apollo-composable';
 import { ref, watch, watchEffect } from 'vue';
 import Loader from '../loader/Loader.vue';
-import { GET_POKEMONS } from '../queries/getPokemons.gql';
 import { GET_POKEMON_TYPES } from '../queries/getPokemonTypes.gql';
+import { GET_POKEMONS } from '../queries/getPokemons.gql';
 import { useRouter } from 'vue-router';
 import { usePokemonStore } from '../store/pokemonStore';
 import { toTitleCase, getBackground } from '../shared/helpers.js';
@@ -126,12 +137,14 @@ const router = useRouter();
 const itemsPerPage = ref(12);
 const currentPage = ref(1);
 const pokemonTypes = ref([]);
+const selectedTypes = ref([]);
 const pokemons = ref([]);
 const totalPokemons = ref(0);
 const searchQuery = ref('');
 const loading = ref(true);
-const selectedTypes = ref([]);
+const error = ref(null);
 
+// handle page changes
 function onPageChange(newPage) {
   currentPage.value = newPage;
 }
@@ -227,18 +240,23 @@ function mapPokemons(newResult) {
   });
   // update total number of pokemon
   totalPokemons.value = newResult.pokemonCount.aggregate.count;
-  // mark that loading finished
+  // stop loading
   loading.value = false;
 }
 
-// everytime errors occur it will show here
-watchEffect(() => {
-  if (listError.value || typesError.value) {
-    console.log(listError.value || typesError.value);
-  }
-});
+// handle error
+const handleError = (newError) => {
+  loading.value = false; // stop loading
+  error.value = newError; // update error message
+};
 
-// add or remove a favourite pokemon
+// watch for error in pokemon types
+watch(typesError, handleError);
+
+// watch for error in pokemon list
+watch(listError, handleError);
+
+// add or remove pokemon from favourites
 function toggleFavouritePokemon(pokemonId) {
   store.toggleFavouritePokemon(pokemonId);
 }
