@@ -154,30 +154,35 @@ onMounted(() => {
     } = useQuery(GET_POKEMON_DETAILS, { id: pokemonId });
 
     // watch for changes in details
-    watch(result, (newResult) => {
-      if (newResult && newResult.pokemon) {
-        // update the details with new ones
-        pokemon.value = {
-          ...newResult.pokemon,
-          name: toTitleCase(newResult.pokemon.name),
-          types: newResult.pokemon.types.map((type) => ({
-            id: type.type.id,
-            name: toTitleCase(type.type.name),
-          })),
-          stats: newResult.pokemon.stats.map((stat) => ({
-            base_stat: stat.base_stat,
-            id: stat.stat.id,
-            name: toTitleCase(stat.stat.name),
-          })),
-          abilities: newResult.pokemon.abilities.map((ability) => ({
-            id: ability.ability.id,
-            name: toTitleCase(ability.ability.name),
-          })),
-          background: getBackground(newResult.pokemon),
-          avatar: getAvatar(newResult.pokemon),
-        };
-      }
-    });
+    watch(
+      result,
+      (newResult) => {
+        if (newResult) {
+          // update the details with new ones
+          pokemon.value = {
+            ...newResult.pokemon,
+            name: toTitleCase(newResult.pokemon.name),
+            types: newResult.pokemon.types.map((type) => ({
+              id: type.type.id,
+              name: toTitleCase(type.type.name),
+            })),
+            stats: newResult.pokemon.stats.map((stat) => ({
+              base_stat: stat.base_stat,
+              id: stat.stat.id,
+              name: toTitleCase(stat.stat.name),
+            })),
+            abilities: newResult.pokemon.abilities.map((ability) => ({
+              id: ability.ability.id,
+              name: toTitleCase(ability.ability.name),
+            })),
+            background: getBackground(newResult.pokemon),
+            avatar: getAvatar(newResult.pokemon),
+          };
+          loading.value = false;
+        }
+      },
+      { immediate: true }
+    );
 
     // watch for changes in details loading and update loading value
     watch(detailsLoading, (newLoading) => {
