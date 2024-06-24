@@ -1,8 +1,9 @@
 # Pokédex-explorer
 
-Please follow the instructions to run the app:
+Please follow the instructions below to run the app locally:
 
 ```
+$ git clone https://github.com/tk1814/pokedex.git
 $ cd pokedex/
 $ npm install
 $ npm run dev
@@ -10,15 +11,19 @@ $ npm run dev
   ➜ Local: http://localhost:5173/
   ➜ Network: use --host to expose
   ➜ press h + enter to show help
-
-Finally go to: http://localhost:5173/
 ```
 
-Assumptions/Decisions:
+Go to: http://localhost:5173/ or
 
-1. Assumption for Pokémon Type Filters:
+See the app in action here: https://pokedex-tk.netlify.app
 
-We assume that when selecting multiple types, such as Water and Fire, the filter functionality will return all Pokémon that match either type individually or both types simultaneously. Specifically:
+---
+
+### Assumptions/Decisions:
+
+1. Pokémon Type Filters:
+
+When selecting multiple types, such as Water and Fire, the filter functionality will return all Pokémon that match either type individually or both types simultaneously. Specifically:
 
 Selecting "Water" will display Pokémon that have "Water" as one of their types.<br>
 Selecting "Fire" will display Pokémon that have "Fire" as one of their types.<br>
