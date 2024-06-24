@@ -157,7 +157,7 @@ onMounted(() => {
     watch(
       result,
       (newResult) => {
-        if (newResult) {
+        if (newResult && newResult.pokemon) {
           // update the details with new ones
           pokemon.value = {
             ...newResult.pokemon,
