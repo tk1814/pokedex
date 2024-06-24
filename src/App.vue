@@ -16,6 +16,11 @@ import NavBar from './navbar/NavBar.vue';
 <style scoped>
 .app,
 body {
-  background: linear-gradient(0deg, rgba(235, 67, 67, 0.973), #f1c840);
+  background: linear-gradient(
+    0deg,
+    rgb(111, 171, 187),
+    rgb(169, 211, 205),
+    rgb(195, 188, 118)
+  );
 }
 </style>
