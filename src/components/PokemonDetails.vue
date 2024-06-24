@@ -119,7 +119,7 @@
 
     <!-- No pokemon found -->
     <div v-else>
-      <p>No Pokemon found.</p>
+      <p>No Pokémon found.</p>
     </div>
   </v-container>
 </template>
@@ -137,6 +137,7 @@ const store = usePokemonStore();
 const route = useRoute();
 
 const pokemon = ref(null);
+
 const loading = ref(true);
 const error = ref(null);
 
